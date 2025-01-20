@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Math Function Exercise</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container styling */
+        .exercise {
+            text-align: center;
+            background-color: #1a1a1a;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+            width: 400px;
+        }
+
+        .exercise h2 {
+            margin-bottom: 10px;
+        }
+
+        .exercise p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        /* Div container */
+        #div1 {
+            background-color: #000;
+            color: lime;
+            font-family: "Courier New", Courier, monospace;
+            padding: 10px;
+            border: 2px solid #fff;
+            border-radius: 5px;
+            margin: 10px 0;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Draggable buttons */
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .drag-btn {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: grab;
+        }
+
+        .drag-btn:active {
+            cursor: grabbing;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise">
+        <h2>Exercise</h2>
+        <p>Drag and drop the correct CSS math function to calculate the width of a div.</p>
+        <div id="div1">width: __ (100% - 50px);</div>
+        <div class="button-container">
+            <button class="drag-btn" draggable="true" ondragstart="drag(event)" id="calc">calc</button>
+            <button class="drag-btn" draggable="true" ondragstart="drag(event)" id="max">max</button>
+            <button class="drag-btn" draggable="true" ondragstart="drag(event)" id="min">min</button>
+            <button class="drag-btn" draggable="true" ondragstart="drag(event)" id="average">average</button>
+        </div>
+        <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
+    </div>
+
+    <script>
+        // Drag and drop logic
+        function drag(event) {
+            event.dataTransfer.setData("text", event.target.id);
+        }
+
+        document.getElementById("div1").addEventListener("dragover", function(event) {
+            event.preventDefault();
+        });
+
+        document.getElementById("div1").addEventListener("drop", function(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData("text");
+            this.textContent = width: ${data} (100% - 50px);;
+            this.dataset.value = data; // Store the value for checking
+        });
+
+        // Submit answer logic
+        function submitAnswer() {
+            const answer = document.getElementById("div1").dataset.value;
+            if (answer === "calc") {
+                alert("Correct! Well done.");
+            } else {
+                alert("Incorrect. Try again.");
+            }
+        }
+    </script>
+</body>
+</html>
